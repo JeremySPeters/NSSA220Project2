@@ -5,6 +5,11 @@
 """
 
 def parse(filename):
+	"""
+
+	:param filename:
+	:return:
+	"""
 	file = open(filename, 'r')
 	raw = file.readlines()
 	traffic = []
@@ -18,14 +23,16 @@ def parse(filename):
 		if line[0] == "No.":
 			traffic.append(bus)
 			bus = []
-			print("====================================================================================================")
 		bus.append(line)
-		print(line)
-	print(traffic)
+	traffic.append(bus)
+	traffic.pop(0)
+	for bus in traffic:
+		bus.append(bus[1][4])
 	file.close()
+	return traffic
 
 def main():
-	parse("Captures/example.txt")
+	parse("Captures/Node1.txt")
 
 if __name__ == '__main__':
     main()
