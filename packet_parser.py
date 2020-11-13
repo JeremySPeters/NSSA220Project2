@@ -28,12 +28,13 @@ def parse(filename):
 	traffic.pop(0)
 	for bus in traffic:
 		bus.append(bus[1][4])
+		bus.pop(2)
 	file.close()
 	return traffic
 
 def main():
 	traffic = parse("Captures/Node1.txt")
-	for bus in traffic:print(bus[len(bus) - 1])
+	for bus in traffic:print(bus[0])
 
 if __name__ == '__main__':
     main()
