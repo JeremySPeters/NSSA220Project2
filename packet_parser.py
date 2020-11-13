@@ -15,13 +15,12 @@ def parse(filename):
 			if split[i] != '':
 				line.append(split[i])
 		if line[0] == "No.":
-			print("====================================================================================================")
 			traffic.append(bus)
 			bus = []
+			print("====================================================================================================")
 		bus.append(line)
 		print(line)
-	traffic.pop(0)
-	print(traffic[0][1][4])
+	print(traffic)
 	file.close()
 
 def main():
