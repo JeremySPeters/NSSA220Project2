@@ -6,14 +6,22 @@
 def parse(filename):
 	file = open(filename, 'r')
 	raw = file.readlines()
+	traffic = []
+	bus = []
 	for line in raw:
 		split = line.split(' ')
 		line = []
 		for i in range(len(split)):
 			if split[i] != '':
 				line.append(split[i])
+		if line[0] == "No.":
+			print("====================================================================================================")
+			traffic.append(bus)
+			bus = []
+		bus.append(line)
 		print(line)
-
+	traffic.pop(0)
+	print(traffic[0][1][4])
 	file.close()
 
 def main():
