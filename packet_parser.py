@@ -8,7 +8,12 @@ def parse(filename):
 	raw = file.readlines()
 	for line in raw:
 		split = line.split(' ')
-		print(split)
+		line = []
+		for i in range(len(split)):
+			if split[i] != '':
+				line.append(split[i])
+		print(line)
+
 	file.close()
 
 def main():
