@@ -32,7 +32,8 @@ def parse(filename):
 	return traffic
 
 def main():
-	parse("Captures/Node1.txt")
+	traffic = parse("Captures/Node1.txt")
+	for bus in traffic:print(bus[len(bus) - 1])
 
 if __name__ == '__main__':
     main()
