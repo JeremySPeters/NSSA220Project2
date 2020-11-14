@@ -11,7 +11,7 @@ def parse(filename):
 	Parses a text file containing network traffic
 	:param filename: Name of file to read from
 	:return: An array of sub arrays that comprise a packet. Format as follows:
-	[ [Labels], [Header], [Packet Payload]...]
+	traffic = [ [[Labels], [Header], [Packet Payload]...], [[Labels], [Header], [Packet Payload]...], etc.]
 	Protocol type will always be located at traffic[index][1][4]
 	"""
 	file = open(filename, 'r')
