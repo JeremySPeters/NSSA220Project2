@@ -6,7 +6,17 @@
 
 import sys
 
-def filter(filename):
+def filter(filename, protocol):
+	traffic = read_in(filename)
+	if protocol == '':
+		return traffic
+	ret = []
+	for bus in traffic:
+		if bus[1][4] == protocol:
+			ret.append(bus)
+	return ret
+
+def read_in(filename):
 	"""
 	Reads in a text file containing network traffic
 	:param filename: Name of file to read from
@@ -65,11 +75,11 @@ def recursive_remove(bus):
 	return bus
 
 def main():
-	traffic = filter(str(sys.argv[(len(sys.argv) - 1)]))
+	traffic = filter(str(sys.argv[(len(sys.argv) - 1)]), 'ICMP')
 	for bus in traffic:
 		sep = 0
+		print(bus[1])
 		for passanger in bus:
-			print(passanger)
 			if len(passanger) > sep:
 				sep = len(passanger)
 		for i in range(sep):
