@@ -6,14 +6,14 @@
 
 import sys
 
-def filter(filename, protocol):
+def filter(inputFilename, protocol, outputFilename):
 	"""
 		Reads the file and filters by protocl
 		:param filename: Name of file to read from
 		:param protocol: Protocol To filter
 		:return:
 		"""
-	traffic = read_in(filename)
+	traffic = read_in(inputFilename)
 	if protocol == '':
 		return traffic
 	ret = []
@@ -83,6 +83,7 @@ def recursive_remove(bus):
 	return bus
 
 def main():
+	#traffic = filter('Captures/Node1.txt','ICMP')
 	traffic = filter(str(sys.argv[(len(sys.argv) - 1)]), 'ICMP')
 	for bus in traffic:
 		sep = 0
@@ -93,6 +94,5 @@ def main():
 		for i in range(sep):
 			print("-----------", end="")
 		print()
-
 if __name__ == '__main__':
     main()
