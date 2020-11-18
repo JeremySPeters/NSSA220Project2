@@ -6,9 +6,10 @@
 """
 
 def parse(filename):
+    content = []
     with open(filename) as f:
         content = f.readlines()
-        return filename
+        return content
 
 def main():
     parse()
