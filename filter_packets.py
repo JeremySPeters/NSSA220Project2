@@ -20,6 +20,11 @@ def filter(inputFilename, protocol, outputFilename):
 	for bus in traffic:
 		if bus[1][4] == protocol:
 			ret.append(bus)
+	file = open(outputFilename, 'w')
+	for bus in ret:
+		bus = str(bus[1]).replace('\'','').replace(']','').replace('[','')
+		file.write(bus + '\n')
+	file.close()
 	return ret
 
 
@@ -83,8 +88,8 @@ def recursive_remove(bus):
 	return bus
 
 def main():
-	#traffic = filter('Captures/Node1.txt','ICMP')
-	traffic = filter(str(sys.argv[(len(sys.argv) - 1)]), 'ICMP')
+	traffic = filter('Captures/Node1.txt', 'ICMP', 'debug.txt')
+	#traffic = filter(str(sys.argv[(len(sys.argv) - 1)]), 'ICMP', 'debug.txt')
 	for bus in traffic:
 		sep = 0
 		print(bus[1])
