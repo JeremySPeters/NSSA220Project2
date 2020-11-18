@@ -5,15 +5,20 @@
 
 """
 
+
 def parse(filename):
-    content = []
+    parseList = []
     with open(filename) as f:
         content = f.readlines()
-        return content
+        for line in content:
+            line = line.split()
+            parseList.append(line)
+    return parseList
+
 
 def main():
-    parse()
-
+    parseList = (parse('debug.txt'))
+    print(parseList)
 
 if __name__ == '__main__':
     main()
