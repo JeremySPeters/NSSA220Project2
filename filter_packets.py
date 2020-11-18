@@ -23,7 +23,7 @@ def filter(inputFilename, protocol, outputFilename):
 			ret.append(bus)
 	file = open(outputFilename, 'w')
 	for bus in ret:
-		bus = str(bus[1]).replace('\'','').replace(']','').replace('[','')
+		bus = str(bus[1]).replace('\'','').replace(']','').replace('[','').replace(',,','').replace(' ','')
 		file.write(bus + '\n')
 	file.close()
 	return ret

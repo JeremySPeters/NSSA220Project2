@@ -20,7 +20,8 @@ def parse(filename):
 
 def main():
     parseList = (parse('debug.txt'))
-    print(parseList)
+    for packet in parseList:
+        print(packet)
 
 if __name__ == '__main__':
     main()
