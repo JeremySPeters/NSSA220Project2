@@ -4,10 +4,9 @@ from compute_metrics import *
 
 """
 @Authors:
-	Jeremy Peters (Jsp7075)
-	Randall Weber (rjw9659)
+    Jeremy Peters (Jsp7075)
+    Randall Weber (rjw9659)
 """
-
 
 
 filter()
