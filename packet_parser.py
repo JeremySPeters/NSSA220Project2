@@ -11,9 +11,7 @@ def parse(filename):
     with open(filename) as f:
         content = f.readlines()
         for line in content:
-            line = line.split()
-            for i in line:
-                i.replace(",", "")
+            line = line.split(", ")
             parseList.append(line)
     return parseList
 
