@@ -8,11 +8,11 @@ import sys
 
 def filter(inputFilename, protocol, outputFilename):
 	"""
-		Reads the file and filters by protocl
-		:param filename: Name of file to read from
-		:param protocol: Protocol To filter
-		:return:
-		"""
+	Reads the file and filters by protocl
+	:param filename: Name of file to read from
+	:param protocol: Protocol To filter
+	:return:
+	"""
 	traffic = read_in(inputFilename)
 	if protocol == '':
 		return traffic
@@ -22,7 +22,7 @@ def filter(inputFilename, protocol, outputFilename):
 			ret.append(bus)
 	file = open(outputFilename, 'w')
 	for bus in ret:
-		bus = str(bus[1]).replace('\'','').replace(']','').replace('[','')
+		bus = str(bus[1]).replace('\'','').replace(']','').replace('[','').replace(',,', '').replace(' ','')
 		file.write(bus + '\n')
 	file.close()
 	return ret
