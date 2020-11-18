@@ -10,7 +10,9 @@ from compute_metrics import *
 """
 
 
-
-filter()
-parse()
-compute()
+def main():
+    filter()
+    parse()
+    compute()
+if __name__ == '__main__':
+    main()
