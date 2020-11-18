@@ -7,6 +7,12 @@
 import sys
 
 def filter(filename, protocol):
+	"""
+		Reads the file and filters by protocl
+		:param filename: Name of file to read from
+		:param protocol: Protocol To filter
+		:return:
+		"""
 	traffic = read_in(filename)
 	if protocol == '':
 		return traffic
@@ -15,6 +21,8 @@ def filter(filename, protocol):
 		if bus[1][4] == protocol:
 			ret.append(bus)
 	return ret
+
+
 
 def read_in(filename):
 	"""
