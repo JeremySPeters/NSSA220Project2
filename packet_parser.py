@@ -12,7 +12,7 @@ def parse(filename):
         content = f.readlines()
         for line in content:
             line = line.rstrip()
-            line = line.split(", ")
+            line = line.split(",")
             parseList.append(line)
     return parseList
 
