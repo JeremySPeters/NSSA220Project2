@@ -9,11 +9,11 @@ import sys
 
 def filter(inputFilename, protocol, outputFilename):
 	"""
-		Reads the file and filters by protocl
-		:param inputFilename: Name of file to read from
-		:param protocol: Protocol To filter
-		:return:
-		"""
+	Reads the file and filters by protocl
+	:param inputFilename: Name of file to read from
+	:param protocol: Protocol To filter
+	:return:
+	"""
 	traffic = read_in(inputFilename)
 	if protocol == '':
 		return traffic
