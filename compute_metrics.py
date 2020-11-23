@@ -58,7 +58,7 @@ def average_round_trip_time(packetList):
 	:return: RTT (round trip time)
 	"""
 	temp_0 = 0
-	temp_1 = 1
+	temp_1 = 0
 	average_array = []
 	RTT = 0
 
@@ -71,6 +71,7 @@ def average_round_trip_time(packetList):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
+		temp_1 = 0
 	RTT = sum(average_array) / len(average_array)
 	return RTT
 
@@ -81,7 +82,7 @@ def echo_request_throughput(packetList):
 	:return: ERT (echo request throughput) 
 	"""
 	temp_0 = 0
-	temp_1 = 1
+	temp_1 = 0
 	average_array = []
 	ERT = 0
 
@@ -94,6 +95,7 @@ def echo_request_throughput(packetList):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
+		temp_1 = 0
 	ERT = compute.numRequestBytesSentFrame / sum(average_array)
 	return ERT
 
@@ -104,7 +106,7 @@ def echo_request_goodput(packetList):
 	:return: ERT (echo request throughput) 
 	"""
 	temp_0 = 0
-	temp_1 = 1
+	temp_1 = 0
 	average_array = []
 	ERG = 0
 
@@ -117,6 +119,7 @@ def echo_request_goodput(packetList):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
+		temp_1 = 0
 	ERG = compute.numRequestBytesSentICMP / sum(average_array)
 	return ERG
 
@@ -127,7 +130,7 @@ def average_reply_delay(packetList):
 	:return: ARD (average reply delay)
 	"""
 	temp_0 = 0
-	temp_1 = 1
+	temp_1 = 0
 	average_array = []
 	ARD = 0
 
@@ -140,5 +143,7 @@ def average_reply_delay(packetList):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
+		temp_1 = 0
 	ARD = sum(average_array) / len(average_array)
 	return ARD
+
