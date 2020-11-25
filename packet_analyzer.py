@@ -68,15 +68,6 @@ def main():
         print(temp_2)
 
 
-
-
-    # Reference for CSV Write
-    #  [0][str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP),
-    #  [3]str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec),
-    #  [7]str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame),
-    #  [11]str(numReplyBytesRecICMP)]
-    metricResults = []
-
     with open('MiniProject2Output.csv', 'w', newline='') as file:
         for node in  adjustedResults:
 		nodeNum = 1
