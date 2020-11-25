@@ -113,24 +113,28 @@ def echo_request_throughput(packetList, hostIP):
 	average_array = []
 	ERT = 0
 
-	while temp_0 <= len(packetList):
+	while temp_0 < len(packetList):
 		if(packetList[7] == "unreachable"):
 				pass
-		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
-			string_temp_0: str = packetList[temp_0][9]
-			array_temp_0 = string_temp_0.split("=")
-			string_temp_1: str = array_temp_0[2]
-			string_temp_1.replace("ttl", "")
-			string_temp_2: str = packetList[temp_1][9]
-			array_temp_1 = string_temp_2.split("=")
-			string_temp_3: str = array_temp_1[2]
-			string_temp_3.replace("ttl", "")
+		if(packetList[temp_0][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):
+				string_temp_0: str = packetList[temp_0][9]
+				array_temp_0 = string_temp_0.split("=")
+				string_temp_1: str = array_temp_0[2]
+				string_temp_1.replace("ttl", "")
 
-			while temp_1 <= len(packetList):
-				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == string_temp_3):
-						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-			temp_1 += 1
+		if(packetList[temp_1][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):
+				string_temp_2: str = packetList[temp_1][9]
+				array_temp_1 = string_temp_2.split("=")
+				string_temp_3: str = array_temp_1[2]
+				string_temp_3.replace("ttl", "")
+
+				while temp_1 <= len(packetList):
+					if(temp_0 != temp_1):
+						if(packetList[temp_0][9] == string_temp_3):
+							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
+				temp_1 += 1
 		temp_0 += 1
 		temp_1 = 0
 	ERT = compute.numRequestBytesSentFrame / sum(average_array)
@@ -148,24 +152,26 @@ def echo_request_goodput(packetList, hostIP):
 	average_array = []
 	ERG = 0
 
-	hostIP = '192.168.100.1'
-	while temp_0 <= len(packetList):
-		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
-			string_temp_0: str = packetList[temp_0][9]
-			array_temp_0 = string_temp_0.split("=")
-			string_temp_1: str = array_temp_0[2]
-			string_temp_1.replace("ttl", "")
-			
-			string_temp_2: str = packetList[temp_1][9]
-			array_temp_1 = string_temp_2.split("=")
-			string_temp_3: str = array_temp_1[2]
-			string_temp_3.replace("ttl", "")
+	while temp_0 < len(packetList):
+		if(packetList[temp_0][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):
+				string_temp_0: str = packetList[temp_0][9]
+				array_temp_0 = string_temp_0.split("=")
+				string_temp_1: str = array_temp_0[2]
+				string_temp_1.replace("ttl", "")
 
-			while temp_1 <= len(packetList):
-				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == string_temp_3):
-						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-			temp_1 += 1
+		if(packetList[temp_1][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):	
+				string_temp_2: str = packetList[temp_1][9]
+				array_temp_1 = string_temp_2.split("=")
+				string_temp_3: str = array_temp_1[2]
+				string_temp_3.replace("ttl", "")
+
+				while temp_1 <= len(packetList):
+					if(temp_0 != temp_1):
+						if(packetList[temp_0][9] == string_temp_3):
+							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
+				temp_1 += 1
 		temp_0 += 1
 		temp_1 = 0
 	ERG = compute.numRequestBytesSentICMP / sum(average_array)
@@ -183,15 +189,16 @@ def average_reply_delay(packetList, hostIP):
 	average_array = []
 	ARD = 0
 
-	hostIP = '192.168.100.1'
-	while temp_0 <= len(packetList):
-		if(packetList[temp_0][2] != hostIP and packetList[temp_0][8] == "request"):
-			while temp_1 <= len(packetList[temp_0]): # just a hunch but posible issue fix
+	while temp_0 < len(packetList):
+		if(packetList[temp_0][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):
+	#		while temp_1 <= len(packetList[temp_0]): # just a hunch but posible issue fix
 				string_temp_0: str = packetList[temp_0][9]
 				array_temp_0 = string_temp_0.split("=")
 				string_temp_1: str = array_temp_0[2]
 				string_temp_1.replace("ttl", "")
-
+		if(packetList[temp_1][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):
 				string_temp_2: str = packetList[temp_1][9]
 				array_temp_1 = string_temp_2.split("=")
 				string_temp_3: str = array_temp_1[2]
