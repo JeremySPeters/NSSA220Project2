@@ -28,8 +28,10 @@ def main():
 
     for i in range(len(inputNodes)):
         filter(inputNodes[i], 'ICMP', outputNodes[i])
-        headerNodes.append(parse(outputNodes[i]))
-        computedNodes.append(run(headerNodes[i]))
+    for temp in outputNodes:
+        headerNodes.append(parse(temp))
+    for temp in headerNodes:
+        computedNodes.append(run(temp))
 
     with open('MiniProject2Output.csv', 'w', newline='') as file:
         # for each node
