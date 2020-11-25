@@ -65,37 +65,36 @@ def main():
         temp_2.append(str(abs(float(temp_1[15]))))                               #average reply delay                   @index 11
         temp_2.append(str(abs(float(temp_1[16]))))                               #hop average                           @index 12
         adjustedResults.append(temp_2)
-        print(temp_2)
 
 
     with open('MiniProject2Output.csv', 'w', newline='') as file:
+        nodeNum = 1
         for node in  adjustedResults:
-		nodeNum = 1
-		nodeStr = str("Node" + nodeNum)
-            	metricResults = node
-            	writer = csv.writer(file)
-            	writer.writerow([nodeStr]) 
-            	writer.writerow([""])
-            	# Emtpy Line
+            nodeStr = str("Node" + str(nodeNum))
+            metricResults = node
+            writer = csv.writer(file)
+            writer.writerow([nodeStr])
+            writer.writerow([""])
+            # Emtpy Line
 
-            	writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
-            	writer.writerow([metricResults[0], metricResults[4], metricResults[3], metricResults[7]])
-            	writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
-            	writer.writerow([metricResults[1], metricResults[2]])
-            	writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
-            	writer.writerow([metricResults[5], metricResults[6]])
-            	writer.writerow([""])
-            	# Emtpy Line
+            writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
+            writer.writerow([metricResults[0], metricResults[4], metricResults[3], metricResults[7]])
+            writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
+            writer.writerow([metricResults[1], metricResults[2]])
+            writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
+            writer.writerow([metricResults[5], metricResults[6]])
+            writer.writerow([""])
+            # Emtpy Line
 
-            	# Last block of metrics commented for now
-            	writer.writerow(["Average RTT",  metricResults[8]])
-            	writer.writerow(["Echo Request Throughput (kB/sec)",  metricResults[9]])
-            	writer.writerow(["Echo Request Goodput (kB/sec)",  metricResults[10]])
-            	writer.writerow(["Average Reply Delay (microseconds)",  metricResults[11]])
-            	writer.writerow(["Average Echo Request Hop Count",  metricResults[12]])
-            	writer.writerow([""])
-            	# Emtpy Line
-		nodeNum += 1
+            # Last block of metrics commented for now
+            writer.writerow(["Average RTT",  metricResults[8]])
+            writer.writerow(["Echo Request Throughput (kB/sec)",  metricResults[9]])
+            writer.writerow(["Echo Request Goodput (kB/sec)",  metricResults[10]])
+            writer.writerow(["Average Reply Delay (microseconds)",  metricResults[11]])
+            writer.writerow(["Average Echo Request Hop Count",  metricResults[12]])
+            writer.writerow([""])
+            # Emtpy Line
+            nodeNum += 1
 	
 
 

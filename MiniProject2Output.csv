@@ -1,2 +1,60 @@
+Node1
 ""
 Echo Requests Sent,Echo Requests Received,Echo Replies Sent,Echo Replies Received
+128.0,49.0,128.0,49.0
+Echo Requests Bytes Sent (bytes),Echo Requests Data Sent (bytes)
+178904.0,172760.0
+Echo Requests Bytes Received (bytes),Echo Requests Data Received (bytes)
+103808.0,101456.0
+""
+Average RTT,36.18631312650602
+Echo Request Throughput (kB/sec),14.891472032413395
+Echo Request Goodput (kB/sec),0.02130872892891064
+Average Reply Delay (microseconds),69.04946505747132
+Average Echo Request Hop Count,0.2231638418079096
+""
+Node2
+""
+Echo Requests Sent,Echo Requests Received,Echo Replies Sent,Echo Replies Received
+82.0,160.0,82.0,160.0
+Echo Requests Bytes Sent (bytes),Echo Requests Data Sent (bytes)
+106080.0,102144.0
+Echo Requests Bytes Received (bytes),Echo Requests Data Received (bytes)
+227632.0,219952.0
+""
+Average RTT,14.27358939361702
+Echo Request Throughput (kB/sec),39.5314243382442
+Echo Request Goodput (kB/sec),0.06111570127707437
+Average Reply Delay (microseconds),4.2451515031645295
+Average Echo Request Hop Count,0.2975206611570248
+""
+Node3
+""
+Echo Requests Sent,Echo Requests Received,Echo Replies Sent,Echo Replies Received
+72.0,98.0,72.0,98.0
+Echo Requests Bytes Sent (bytes),Echo Requests Data Sent (bytes)
+106140.0,102684.0
+Echo Requests Bytes Received (bytes),Echo Requests Data Received (bytes)
+125816.0,121112.0
+""
+Average RTT,79.35404198192772
+Echo Request Throughput (kB/sec),4.028765103780496
+Echo Request Goodput (kB/sec),0.005465820378221136
+Average Reply Delay (microseconds),68.60984906250003
+Average Echo Request Hop Count,0.29705882352941176
+""
+Node4
+""
+Echo Requests Sent,Echo Requests Received,Echo Replies Sent,Echo Replies Received
+108.0,86.0,108.0,86.0
+Echo Requests Bytes Sent (bytes),Echo Requests Data Sent (bytes)
+150464.0,145280.0
+Echo Requests Bytes Received (bytes),Echo Requests Data Received (bytes)
+84776.0,80648.0
+""
+Average RTT,20.803094935483855
+Echo Request Throughput (kB/sec),19.442929983925602
+Echo Request Goodput (kB/sec),0.02791147966641808
+Average Reply Delay (microseconds),19.344647474999977
+Average Echo Request Hop Count,0.32216494845360827
+""
