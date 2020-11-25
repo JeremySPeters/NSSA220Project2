@@ -78,29 +78,34 @@ def main():
     metricResults = []
 
     with open('MiniProject2Output.csv', 'w', newline='') as file:
-        # for each node
-        writer = csv.writer(file)
-        # writer.writerow(["Node"]) Write node name
-        writer.writerow([""])
-        # Emtpy Line
+        for node in  adjustedResults:
+		nodeNum = 1
+		nodeStr = str("Node" + nodeNum)
+            	metricResults = node
+            	writer = csv.writer(file)
+            	writer.writerow([nodeStr]) 
+            	writer.writerow([""])
+            	# Emtpy Line
 
-        writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
-        writer.writerow([metricResults[0], metricResults[6], metricResults[3], metricResults[9]])
-        writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
-        writer.writerow([metricResults[1], metricResults[2]])
-        writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
-        writer.writerow(metricResults[[7], metricResults[8]])
-        writer.writerow([""])
-        # Emtpy Line
+            	writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
+            	writer.writerow([metricResults[0], metricResults[4], metricResults[3], metricResults[7]])
+            	writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
+            	writer.writerow([metricResults[1], metricResults[2]])
+            	writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
+            	writer.writerow([metricResults[5], metricResults[6]])
+            	writer.writerow([""])
+            	# Emtpy Line
 
-        # Last block of metrics commented for now
-        # writer.writerow(["Average RTT",  num])
-        # writer.writerow(["Echo Request Throughput (kB/sec)",  num])
-        # writer.writerow(["Echo Request Goodput (kB/sec)",  num])
-        # writer.writerow(["Average Reply Delay (microseconds)",  num])
-        # writer.writerow(["Average Echo Request Hop Count",  num])
-        # writer.writerow([""])
-        # Emtpy Line
+            	# Last block of metrics commented for now
+            	writer.writerow(["Average RTT",  metricResults[8]])
+            	writer.writerow(["Echo Request Throughput (kB/sec)",  metricResults[9]])
+            	writer.writerow(["Echo Request Goodput (kB/sec)",  metricResults[10]])
+            	writer.writerow(["Average Reply Delay (microseconds)",  metricResults[11]])
+            	writer.writerow(["Average Echo Request Hop Count",  metricResults[12]])
+            	writer.writerow([""])
+            	# Emtpy Line
+		nodeNum += 1
+	
 
 
 if __name__ == '__main__':
