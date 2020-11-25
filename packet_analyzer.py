@@ -37,12 +37,24 @@ def main():
     for i in range(len(headerNodes)):
         computedNodes.append(run(headerNodes[i], ipNodes[i]))
 
+    reformattedResults = []
+    for temp_1 in computedNodes:
+        temp_2 = []
+        for temp_3 in temp_1:
+            if type([]) == type(temp_3):
+                for temp_4 in temp_3:
+                    temp_2.append(temp_4)
+            else:
+                temp_2.append(temp_3)
+        reformattedResults.append(temp_2)
+
     # Reference for CSV Write
     #  [0][str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP),
     #  [3]str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec),
     #  [7]str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame),
     #  [11]str(numReplyBytesRecICMP)]
     metricResults = []
+
     with open('MiniProject2Output.csv', 'w', newline='') as file:
         # for each node
         writer = csv.writer(file)
