@@ -67,9 +67,19 @@ def average_round_trip_time(packetList):
 	hostIP = '192.168.100.1'
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
+			string_temp_0: str = packetList[temp_0][9]
+			array_temp_0 = string_temp_0.split("=")
+			string_temp_1: str = array_temp_0[2]
+			string_temp_1.replace("ttl", "")
+			
+			string_temp_2: str = packetList[temp_1][9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			string_temp_3.replace("ttl", "")
+
 			while temp_1 <= len(packetList):
 				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == packetList[temp_1][9]): #debug.txt is incorrectly formated for comparison requires more devisions to correctly compare!!!!!!
+					if(packetList[temp_0][9] == string_temp_3):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
@@ -91,9 +101,19 @@ def echo_request_throughput(packetList):
 	hostIP = '192.168.100.1'
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
+			string_temp_0: str = packetList[temp_0][9]
+			array_temp_0 = string_temp_0.split("=")
+			string_temp_1: str = array_temp_0[2]
+			string_temp_1.replace("ttl", "")
+			
+			string_temp_2: str = packetList[temp_1][9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			string_temp_3.replace("ttl", "")
+
 			while temp_1 <= len(packetList):
 				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == packetList[temp_1][9]): #debug.txt is incorrectly formated for comparison requires more devisions to correctly compare!!!!!!
+					if(packetList[temp_0][9] == string_temp_3):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
@@ -115,9 +135,19 @@ def echo_request_goodput(packetList):
 	hostIP = '192.168.100.1'
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
+			string_temp_0: str = packetList[temp_0][9]
+			array_temp_0 = string_temp_0.split("=")
+			string_temp_1: str = array_temp_0[2]
+			string_temp_1.replace("ttl", "")
+			
+			string_temp_2: str = packetList[temp_1][9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			string_temp_3.replace("ttl", "")
+
 			while temp_1 <= len(packetList):
 				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == packetList[temp_1][9]): #debug.txt is incorrectly formated for comparison requires more devisions to correctly compare!!!!!!
+					if(packetList[temp_0][9] == string_temp_3):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
@@ -127,7 +157,7 @@ def echo_request_goodput(packetList):
 
 def average_reply_delay(packetList):
 	"""
-	calculates average reply delay time in millisecondsx
+	calculates average reply delay time in milliseconds
 	:param packetList: list of ping data
 	:return: ARD (average reply delay)
 	"""
@@ -140,8 +170,18 @@ def average_reply_delay(packetList):
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] != hostIP and packetList[temp_0][8] == "request"):
 			while temp_1 <= len(packetList[temp_0]): # just a hunch but posible issue fix
+				string_temp_0: str = packetList[temp_0][9]
+				array_temp_0 = string_temp_0.split("=")
+				string_temp_1: str = array_temp_0[2]
+				string_temp_1.replace("ttl", "")
+
+				string_temp_2: str = packetList[temp_1][9]
+				array_temp_1 = string_temp_2.split("=")
+				string_temp_3: str = array_temp_1[2]
+				string_temp_3.replace("ttl", "")
+
 				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == packetList[temp_1][9]): #debug.txt is incorrectly formated for comparison requires more devisions to correctly compare!!!!!!
+					if(packetList[temp_0][9] == string_temp_3):
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 			temp_1 += 1
 		temp_0 += 1
@@ -151,7 +191,9 @@ def average_reply_delay(packetList):
 
 def hops_av(packetList):
 	"""
-	docstring
+	deterines if a packet has left its local network then averages the number that did and did not
+	:param packetList: list of ping data
+	:return: average hops per echo request
 	"""
 	temp_0 = 0
 	temp_1 = 0
@@ -167,7 +209,6 @@ def hops_av(packetList):
 			if(temp_if_hop == 1):
 				one_hop_this_time += 1
 			elif(temp_if_hop == 3):
-				one_hop_this_time += 1
 				three_hop_this_time += 1
 			else:
 				break
