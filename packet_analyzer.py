@@ -1,9 +1,3 @@
-
-from filter_packets import *
-from packet_parser import *
-from compute_metrics import *
-import csv
-
 """
 @Authors:
 	Jeremy Peters (jsp7075)
@@ -14,6 +8,7 @@ import csv
 from filter_packets import *
 from packet_parser import *
 from compute_metrics import *
+import csv
 
 def main():
     inputNodes = ["Node1.txt",
