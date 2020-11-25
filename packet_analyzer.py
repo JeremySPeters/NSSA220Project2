@@ -51,11 +51,11 @@ def main():
         # Emtpy Line
 
         writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
-        writer.writerow([[0], [6], [3], [9]])
+        writer.writerow([metricResults[0], metricResults[6], metricResults[3], metricResults[9]])
         writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
-        writer.writerow([[1], [2]])
+        writer.writerow([metricResults[1], metricResults[2]])
         writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
-        writer.writerow([[7], [8]])
+        writer.writerow(metricResults[[7], metricResults[8]])
         writer.writerow([""])
         # Emtpy Line
 
