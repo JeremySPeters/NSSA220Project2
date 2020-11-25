@@ -8,19 +8,20 @@ import sys
 import threading
 from typing import Text
 
-def run(packetList):
-	compute(packetList)
-	average_round_trip_time(packetList)
-	echo_request_throughput(packetList)
-	echo_request_goodput(packetList)
-	average_reply_delay(packetList)
+def run(packetList, hostIP):
+	compute(packetList, hostIP)
+	average_round_trip_time(packetList, hostIP)
+	echo_request_throughput(packetList, hostIP)
+	echo_request_goodput(packetList, hostIP)
+	average_reply_delay(packetList, hostIP)
 	hops_av(packetList)
 
 
-def compute(packetList):
+def compute(packetList, hostIP):
 	"""
 	calculates average ping round trip time in milliseconds
 	:param packetList: list of ping data
+	:param hostIP: ip of the host pc 
 	:return: number of icmp Request Sent, number of bytes Sent in the icmp Request Frame, number of bytes Sent in the icmp Request ICMP feild, number of icmp Reply Sent, number of bytes Sent in the icmp Reply Frame, number of bytes Sent in the icmp Reply ICMP feild, number of icmp Request Recieved, number of bytes Recieved in the icmp Request Frame, number of bytes Recieved in the icmp Request ICMP feild, number of icmp Reply Recieved, number of bytes Recieved in the icmp Reply Frame, number of bytes Recieved in the icmp Reply ICMP feild
 	"""
 	print('called compute function in compute_metrics.py')
@@ -39,7 +40,6 @@ def compute(packetList):
 	numReplySent = 0 #4
 	numReplyBytesSentFrame = 0 #5 
 	numReplyBytesSentICMP = 0 #6
-	hostIP = '192.168.100.1'
 
 	for packet in packetList:
 		if packet[7] == 'unreachable':
@@ -66,10 +66,11 @@ def compute(packetList):
 
 	return [str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP)]
 
-def average_round_trip_time(packetList):
+def average_round_trip_time(packetList, hostIP):
 	"""
 	calculates average ping round trip time in milliseconds
 	:param packetList: list of ping data
+	:param hostIP: ip of the host pc 
 	:return: RTT (round trip time)
 	"""
 	temp_0 = 0
@@ -77,7 +78,6 @@ def average_round_trip_time(packetList):
 	average_array = []
 	RTT = 0
 
-	hostIP = '192.168.100.1'
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
 			string_temp_0: str = packetList[temp_0][9]
@@ -100,10 +100,11 @@ def average_round_trip_time(packetList):
 	RTT = sum(average_array) / len(average_array)
 	return RTT
 
-def echo_request_throughput(packetList):
+def echo_request_throughput(packetList, hostIP):
 	"""
 	calculates echo request throughput in kB/sec
 	:param packetList: list of ping data
+	:param hostIP: ip of the host pc 
 	:return: ERT (echo request throughput) 
 	"""
 	temp_0 = 0
@@ -111,7 +112,6 @@ def echo_request_throughput(packetList):
 	average_array = []
 	ERT = 0
 
-	hostIP = '192.168.100.1'
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
 			string_temp_0: str = packetList[temp_0][9]
@@ -134,10 +134,11 @@ def echo_request_throughput(packetList):
 	ERT = compute.numRequestBytesSentFrame / sum(average_array)
 	return ERT
 
-def echo_request_goodput(packetList):
+def echo_request_goodput(packetList, hostIP):
 	"""
 	calculates echo request goodput in kB/sec
 	:param packetList: list of ping data
+	:param hostIP: ip of the host pc 
 	:return: ERT (echo request throughput) 
 	"""
 	temp_0 = 0
@@ -168,10 +169,11 @@ def echo_request_goodput(packetList):
 	ERG = compute.numRequestBytesSentICMP / sum(average_array)
 	return ERG
 
-def average_reply_delay(packetList):
+def average_reply_delay(packetList, hostIP):
 	"""
 	calculates average reply delay time in milliseconds
 	:param packetList: list of ping data
+	:param hostIP: ip of the host pc 
 	:return: ARD (average reply delay)
 	"""
 	temp_0 = 0
