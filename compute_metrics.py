@@ -7,12 +7,7 @@
 from typing import Text
 
 def run(packetList, hostIP):
-	compute(packetList, hostIP)
-	average_round_trip_time(packetList, hostIP)
-	echo_request_throughput(packetList, hostIP)
-	echo_request_goodput(packetList, hostIP)
-	average_reply_delay(packetList, hostIP)
-	hops_av(packetList)
+	return [compute(packetList, hostIP), average_round_trip_time(packetList, hostIP), echo_request_throughput(packetList, hostIP), echo_request_goodput(packetList, hostIP), average_reply_delay(packetList, hostIP), hops_av(packetList)]
 
 
 def compute(packetList, hostIP):
