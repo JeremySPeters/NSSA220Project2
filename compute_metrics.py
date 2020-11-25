@@ -28,8 +28,8 @@ def compute(packetList):
 	numReplyBytesSentICMP = 0
 	hostIP = '192.168.100.1'
 
-	#How do we determine if the requests/replies are being received or sent
-	#Could save IP for comparison
+
+
 	for packet in packetList:
 		if packet[7] == 'unreachable':
 			pass

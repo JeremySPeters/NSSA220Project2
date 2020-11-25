@@ -1,6 +1,7 @@
 from filter_packets import *
 from packet_parser import *
 from compute_metrics import *
+import csv
 
 """
 @Authors:
@@ -17,5 +18,26 @@ def main():
         filter(inputNodes[i], 'ICMP', outputNodes[i])
     parse()
     compute()
+    with open('MiniProject2Output.csv', 'w', newline='') as file:
+        # for each node
+        writer = csv.writer(file)
+        # writer.writerow(["Node"]) Write node name
+        writer.writerow([""])
+        writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
+        # Metrics go here
+        writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
+        # Metrics go here
+        writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
+        # Metrics go here
+        writer.writerow([""])
+        # Last block of metrics commented for now
+        # writer.writerow(["Average RTT",  num])
+        # writer.writerow(["Echo Request Throughput (kB/sec)",  num])
+        # writer.writerow(["Echo Request Goodput (kB/sec)",  num])
+        # writer.writerow(["Average Reply Delay (microseconds)",  num])
+        # writer.writerow(["Average Echo Request Hop Count",  num])
+        writer.writerow([""])
+
+
 if __name__ == '__main__':
     main()
