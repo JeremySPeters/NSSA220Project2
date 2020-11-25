@@ -24,10 +24,13 @@ def main():
                    "Node5_filtered.txt"]
     headerNodes = []
 
+    computedNodes = []
+
     for i in range(len(inputNodes)):
         filter(inputNodes[i], 'ICMP', outputNodes[i])
         headerNodes.append(parse(outputNodes[i]))
-    compute()
+        computedNodes.append(run(headerNodes[i]))
+
     with open('MiniProject2Output.csv', 'w', newline='') as file:
         # for each node
         writer = csv.writer(file)
