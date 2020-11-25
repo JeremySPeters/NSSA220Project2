@@ -109,7 +109,7 @@ def echo_request_throughput(packetList, hostIP):
 	ERT = 0
 
 	while temp_0 <= len(packetList):
-		if temp_0[7] == "unreachable":
+		if packetList[7] == "unreachable":
 				pass
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
 			string_temp_0: str = packetList[temp_0][9]
