@@ -83,7 +83,7 @@ def average_round_trip_time(packetList, hostIP):
 			
 			string_temp_2: str = packetList[temp_1][9]
 			array_temp_1 = string_temp_2.split("=")
-			string_temp_3: str = array_temp_1[2]
+			string_temp_3: str = str(array_temp_1[2])
 			string_temp_3.replace("ttl", "")
 
 			while temp_1 <= len(packetList):
