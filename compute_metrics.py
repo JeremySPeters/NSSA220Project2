@@ -8,28 +8,35 @@ import sys
 import threading
 from typing import Text
 
+def run(packetList):
+	compute(packetList)
+	average_round_trip_time(packetList)
+	echo_request_throughput(packetList)
+	echo_request_goodput(packetList)
+	average_reply_delay(packetList)
+	hops_av(packetList)
+
 
 def compute(packetList):
+
 	print('called compute function in compute_metrics.py')
-	numRequestSent = 0
-	numRequestBytesSentFrame = 0
-	numRequestBytesSentICMP = 0
+	numRequestSent = 0 #1
+	numRequestBytesSentFrame = 0 #2
+	numRequestBytesSentICMP = 0 #3
 
-	numRequestRec = 0
-	numRequestBytesRecFrame = 0
-	numRequestBytesRecICMP = 0
+	numRequestRec = 0 #7
+	numRequestBytesRecFrame = 0 #8
+	numRequestBytesRecICMP = 0 #9
 
-	numReplyRec = 0
-	numReplyBytesRecFrame = 0
-	numReplyBytesRecICMP = 0
+	numReplyRec = 0 #10
+	numReplyBytesRecFrame = 0 #11
+	numReplyBytesRecICMP = 0 #12
 
-	numReplySent = 0
-	numReplyBytesSentFrame = 0
-	numReplyBytesSentICMP = 0
+	numReplySent = 0 #4
+	numReplyBytesSentFrame = 0 #5
+	numReplyBytesSentICMP = 0 #6
 	hostIP = '192.168.100.1'
 
-	#How do we determine if the requests/replies are being received or sent
-	#Could save IP for comparison
 	for packet in packetList:
 		if packet[7] == 'unreachable':
 			pass
@@ -52,6 +59,8 @@ def compute(packetList):
 			numReplySent += 1
 			numReplyBytesSentFrame += packet[5]
 			numReplyBytesSentICMP += (packet[5]-24)
+
+	return str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP), str(), str(), str(), str(), str(), str(), str(), str(), str()
 
 def average_round_trip_time(packetList):
 	"""
