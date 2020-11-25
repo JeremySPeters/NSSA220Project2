@@ -11,8 +11,10 @@ from compute_metrics import *
 
 
 def main():
-    nodes = ["Node1.txt" , "Node2.txt", "Node3.txt", "Node4.txt", "Node5.txt"]
-    filter()
+    inputNodes = ["Node1.txt" , "Node2.txt", "Node3.txt", "Node4.txt", "Node5.txt"]
+    outputNodes = ["Node1_filtered.txt" , "Node2_filtered.txt", "Node3_filtered.txt", "Node4_filtered.txt", "Node5_filtered.txt"]
+    for i in range(len(inputNodes)):
+        filter(inputNodes[i], 'ICMP', outputNodes[i])
     parse()
     compute()
 if __name__ == '__main__':
