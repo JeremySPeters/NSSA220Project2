@@ -17,7 +17,6 @@ def compute(packetList, hostIP):
 	:param hostIP: ip of the host pc 
 	:return: number of icmp Request Sent, number of bytes Sent in the icmp Request Frame, number of bytes Sent in the icmp Request ICMP feild, number of icmp Reply Sent, number of bytes Sent in the icmp Reply Frame, number of bytes Sent in the icmp Reply ICMP feild, number of icmp Request Recieved, number of bytes Recieved in the icmp Request Frame, number of bytes Recieved in the icmp Request ICMP feild, number of icmp Reply Recieved, number of bytes Recieved in the icmp Reply Frame, number of bytes Recieved in the icmp Reply ICMP feild
 	"""
-	print('called compute function in compute_metrics.py')
 	numRequestSent = 0 #1
 	numRequestBytesSentFrame = 0 #2
 	numRequestBytesSentICMP = 0 #3
@@ -76,29 +75,25 @@ def average_round_trip_time(packetList, hostIP):
 	average_array = []
 	RTT = 0
 
-	while temp_0 < len(packetList):
-		if(packetList[temp_0][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-				string_temp_0: str = packetList[temp_0][9]
-				array_temp_0 = string_temp_0.split("=")
-				string_temp_1: str = array_temp_0[2]
-				string_temp_1.replace("ttl", "")
+	for temp_0 in packetList:
+		if(temp_0[7] != 'unreachable'):
+			string_temp_2: str = temp_0[9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			final_string = string_temp_3.replace("ttl", "")
+			for temp_1 in packetList:
+				if(temp_0[2] == hostIP):
+					if(temp_0[8] == "request"):
+						if(temp_1[7] != 'unreachable'):
+							if(temp_0 != temp_1):
+								string_temp_1: str = temp_1[9]
+								array_temp_0 = string_temp_1.split("=")
+								string_temp_2: str = array_temp_0[2]
+								final_string1 = string_temp_2.replace("ttl", "")
+								if(final_string1 == final_string):
+									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
-		if(packetList[temp_1][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-				string_temp_2: str = packetList[temp_1][9]
-				array_temp_1 = string_temp_2.split("=")
-				string_temp_3: str = str(array_temp_1[2])
-				string_temp_3.replace("ttl", "")
-
-				while temp_1 <= len(packetList):
-					if(temp_0 != temp_1):
-						if(packetList[temp_0][9] == string_temp_3):
-							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-				temp_1 += 1
-			RTT = sum(average_array) / len(average_array)
-		temp_0 += 1
-		temp_1 = 0
+	RTT = sum(average_array) / len(average_array)
 	return RTT
 
 def echo_request_throughput(packetList, hostIP):
@@ -108,36 +103,29 @@ def echo_request_throughput(packetList, hostIP):
 	:param hostIP: ip of the host pc 
 	:return: ERT (echo request throughput) 
 	"""
-	temp_0 = 0
-	temp_1 = 0
 	average_array = []
 	ERT = 0
+	for temp_0 in packetList:
+		if(temp_0[7] != 'unreachable'):
+			string_temp_2: str = temp_0[9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			final_string = string_temp_3.replace("ttl", "")
+			for temp_1 in packetList:
+				if(temp_0[2] == hostIP):
+					if(temp_0[8] == "request"):
+						if(temp_1[7] != 'unreachable'):
+							if(temp_0 != temp_1):
+								string_temp_1: str = temp_1[9]
+								array_temp_0 = string_temp_1.split("=")
+								string_temp_2: str = array_temp_0[2]
+								final_string1 = string_temp_2.replace("ttl", "")
+								if(final_string1 == final_string):
+									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
-	while temp_0 < len(packetList):
-		if(packetList[7] == "unreachable"):
-				pass
-		if(packetList[temp_0][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-				string_temp_0: str = packetList[temp_0][9]
-				array_temp_0 = string_temp_0.split("=")
-				string_temp_1: str = array_temp_0[2]
-				string_temp_1.replace("ttl", "")
-
-		if(packetList[temp_1][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-				string_temp_2: str = packetList[temp_1][9]
-				array_temp_1 = string_temp_2.split("=")
-				string_temp_3: str = array_temp_1[2]
-				string_temp_3.replace("ttl", "")
-
-				while temp_1 <= len(packetList):
-					if(temp_0 != temp_1):
-						if(packetList[temp_0][9] == string_temp_3):
-							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-				temp_1 += 1
-		temp_0 += 1
-		temp_1 = 0
-	ERT = compute.numRequestBytesSentFrame / sum(average_array)
+	compute_ar = compute(packetList, hostIP)
+	temp_int = compute_ar[1]
+	ERT = float(temp_int)  / sum(average_array)
 	return ERT
 
 def echo_request_goodput(packetList, hostIP):
@@ -147,34 +135,28 @@ def echo_request_goodput(packetList, hostIP):
 	:param hostIP: ip of the host pc 
 	:return: ERT (echo request throughput) 
 	"""
-	temp_0 = 0
-	temp_1 = 0
 	average_array = []
 	ERG = 0
+	for temp_0 in packetList:
+		if(temp_0[7] != 'unreachable'):
+			string_temp_2: str = temp_0[9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			final_string = string_temp_3.replace("ttl", "")
+			for temp_1 in packetList:
+				if(temp_0[2] == hostIP):
+					if(temp_0[8] == "request"):
+						if(temp_1[7] != 'unreachable'):
+							if(temp_0 != temp_1):
+								string_temp_1: str = temp_1[9]
+								array_temp_0 = string_temp_1.split("=")
+								string_temp_2: str = array_temp_0[2]
+								final_string1 = string_temp_2.replace("ttl", "")
+								if(final_string1 == final_string):
+									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
-	while temp_0 < len(packetList):
-		if(packetList[temp_0][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-				string_temp_0: str = packetList[temp_0][9]
-				array_temp_0 = string_temp_0.split("=")
-				string_temp_1: str = array_temp_0[2]
-				string_temp_1.replace("ttl", "")
-
-		if(packetList[temp_1][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):	
-				string_temp_2: str = packetList[temp_1][9]
-				array_temp_1 = string_temp_2.split("=")
-				string_temp_3: str = array_temp_1[2]
-				string_temp_3.replace("ttl", "")
-
-				while temp_1 <= len(packetList):
-					if(temp_0 != temp_1):
-						if(packetList[temp_0][9] == string_temp_3):
-							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-				temp_1 += 1
-		temp_0 += 1
-		temp_1 = 0
-	ERG = compute.numRequestBytesSentICMP / sum(average_array)
+	compute_ar = compute(packetList, hostIP)
+	ERG = float(compute_ar[3]) / sum(average_array)
 	return ERG
 
 def average_reply_delay(packetList, hostIP):
@@ -184,32 +166,27 @@ def average_reply_delay(packetList, hostIP):
 	:param hostIP: ip of the host pc 
 	:return: ARD (average reply delay)
 	"""
-	temp_0 = 0
-	temp_1 = 0
 	average_array = []
 	ARD = 0
 
-	while temp_0 < len(packetList):
-		if(packetList[temp_0][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-	#		while temp_1 <= len(packetList[temp_0]): # just a hunch but posible issue fix
-				string_temp_0: str = packetList[temp_0][9]
-				array_temp_0 = string_temp_0.split("=")
-				string_temp_1: str = array_temp_0[2]
-				string_temp_1.replace("ttl", "")
-		if(packetList[temp_1][2] == hostIP):
-			if(packetList[temp_0][8] == "request"):
-				string_temp_2: str = packetList[temp_1][9]
-				array_temp_1 = string_temp_2.split("=")
-				string_temp_3: str = array_temp_1[2]
-				string_temp_3.replace("ttl", "")
+	for temp_0 in packetList:
+		if(temp_0[7] != 'unreachable'):
+			string_temp_2: str = temp_0[9]
+			array_temp_1 = string_temp_2.split("=")
+			string_temp_3: str = array_temp_1[2]
+			final_string = string_temp_3.replace("ttl", "")
+			for temp_1 in packetList:
+				if(temp_0[2] == hostIP):
+					if(temp_0[8] == "request"):
+						if(temp_1[7] != 'unreachable'):
+							if(temp_0 != temp_1):
+								string_temp_1: str = temp_1[9]
+								array_temp_0 = string_temp_1.split("=")
+								string_temp_2: str = array_temp_0[2]
+								final_string1 = string_temp_2.replace("ttl", "")
+								if(final_string1 == final_string):
+									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
-				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == string_temp_3):
-						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-			temp_1 += 1
-		temp_0 += 1
-		temp_1 = 0
 	ARD = sum(average_array) / len(average_array)
 	return ARD
 
@@ -219,16 +196,14 @@ def hops_av(packetList):
 	:param packetList: list of ping data
 	:return: average hops per echo request
 	"""
-	temp_0 = 0
-	temp_1 = 0
 	one_hop_this_time = 0
 	three_hop_this_time = 0
-	while temp_0 <= len(packetList):
-		while temp_1 <= len(packetList[temp_0]):
-			string_temp_0: str = packetList[temp_0][9]
+	for temp_0 in packetList:
+		if(temp_0[7] != 'unreachable'):
+			string_temp_0: str = temp_0[9]
 			array_temp_0 = string_temp_0.split("=")
 			string_temp_1: int = array_temp_0[3]
-			temp_if_hop = 129 - string_temp_1
+			temp_if_hop = 129 - int(string_temp_1)
 			
 			if(temp_if_hop == 1):
 				one_hop_this_time += 1
@@ -236,8 +211,6 @@ def hops_av(packetList):
 				three_hop_this_time += 1
 			else:
 				break
-			temp_1 += 1
-		temp_0 += 1
 	total_hops = one_hop_this_time + three_hop_this_time
 	avg_hops = float(three_hop_this_time/total_hops)
 	return avg_hops
