@@ -177,7 +177,7 @@ def average_reply_delay(packetList, hostIP):
 			string_temp_3: str = array_temp_1[2]
 			final_string = string_temp_3.replace("ttl", "")
 			for temp_1 in packetList:
-				if(temp_0[2] == hostIP):
+				if(temp_0[2] != hostIP):
 					if(temp_0[8] == "request"):
 						if(temp_1[7] != 'unreachable'):
 							if(temp_0 != temp_1):
