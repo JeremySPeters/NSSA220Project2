@@ -18,7 +18,11 @@ def run(packetList):
 
 
 def compute(packetList):
-
+	"""
+	calculates average ping round trip time in milliseconds
+	:param packetList: list of ping data
+	:return: number of icmp Request Sent, number of bytes Sent in the icmp Request Frame, number of bytes Sent in the icmp Request ICMP feild, number of icmp Reply Sent, number of bytes Sent in the icmp Reply Frame, number of bytes Sent in the icmp Reply ICMP feild, number of icmp Request Recieved, number of bytes Recieved in the icmp Request Frame, number of bytes Recieved in the icmp Request ICMP feild, number of icmp Reply Recieved, number of bytes Recieved in the icmp Reply Frame, number of bytes Recieved in the icmp Reply ICMP feild
+	"""
 	print('called compute function in compute_metrics.py')
 	numRequestSent = 0 #1
 	numRequestBytesSentFrame = 0 #2
@@ -60,7 +64,7 @@ def compute(packetList):
 			numReplyBytesSentFrame += packet[5]
 			numReplyBytesSentICMP += (packet[5]-24)
 
-	return str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP), str(), str(), str(), str(), str(), str(), str(), str(), str()
+	return [str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP)]
 
 def average_round_trip_time(packetList):
 	"""
