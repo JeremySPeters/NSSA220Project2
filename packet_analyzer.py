@@ -51,51 +51,21 @@ def main():
     adjustedResults = []
     for temp_1 in reformattedResults:
         temp_2 = []
-        temp_2.append(temp_1[0])                                #ICMP requests sent     @index 0
-        temp_2.append(str(float(temp_1[1]) + float(temp_1[4]))) #Totall bytes sent in frame  @index 1
-        temp_2.append(str(float(temp_1[2]) + float(temp_1[5]))) #Totall bytes sent in ICMP message @index 2
-        temp_2.append(temp_1[3])                                #ICMP replies sent      @index 3
-        temp_2.append(temp_1[6])                                #ICMP requests recieved @index 4
-        temp_2.append(str(float(temp_1[7]) + float(temp_1[10])))#Totall bytes Recieved in frame @index 5
-        temp_2.append(str(float(temp_1[8]) + float(temp_1[11])))#Totall bytes Recieved in ICMP message @index 6
-        temp_2.append(temp_1[9])                                #                       @index 7
-        temp_2.append(temp_1[12])                               #                       @index 8
-        temp_2.append(temp_1[13])                               #                       @index 9
-        temp_2.append(temp_1[14])                               #                       @index 10
-        temp_2.append(temp_1[15])                               #                       @index 11
-        temp_2.append(temp_1[16])                               #                       @index 12
+        temp_2.append(str(abs(float(temp_1[0]))))                                #ICMP requests sent                    @index 0
+        temp_2.append(str(float(temp_1[1]) + float(temp_1[4])))                  #Totall bytes sent in frame            @index 1
+        temp_2.append(str(float(temp_1[2]) + float(temp_1[5])))                  #Totall bytes sent in ICMP message     @index 2
+        temp_2.append(str(abs(float(temp_1[3]))))                                #ICMP replies sent                     @index 3
+        temp_2.append(str(abs(float(temp_1[6]))))                                #ICMP requests recieved                @index 4
+        temp_2.append(str(float(temp_1[7]) + float(temp_1[10])))                 #Totall bytes Recieved in frame        @index 5
+        temp_2.append(str(float(temp_1[8]) + float(temp_1[11])))                 #Totall bytes Recieved in ICMP message @index 6
+        temp_2.append(str(abs(float(temp_1[9]))))                                #number of icmp Reply Recieved         @index 7
+        temp_2.append(str(abs(float(temp_1[12]))))                               #Round trip time                       @index 8
+        temp_2.append(str(abs(float(temp_1[13]))))                               #Echo request throughput               @index 9
+        temp_2.append(str(abs(float(temp_1[14]))))                               #Echo request goodput                  @index 10
+        temp_2.append(str(abs(float(temp_1[15]))))                               #average reply delay                   @index 11
+        temp_2.append(str(abs(float(temp_1[16]))))                               #hop average                           @index 12
         adjustedResults.append(temp_2)
-        print(len(temp_2))
-
-    #[
-    # 1str(numRequestSent),
-    # 2str(numRequestBytesSentFrame),
-    # 3str(numRequestBytesSentICMP),
-    # 4str(numReplySent),
-    # 5str(numReplyBytesSentFrame),
-    # 6str(numReplyBytesSentICMP),
-    # 7str(numRequestRec),
-    # 8str(numRequestBytesRecFrame),
-    # 9str(numRequestBytesRecICMP),
-    # 10str(numReplyRec),
-    # 11str(numReplyBytesRecFrame),
-    # 12str(numReplyBytesRecICMP)]
-
-    # 13average_round_trip_time(packetList, hostIP),
-    # 14echo_request_throughput(packetList, hostIP),
-    # 15echo_request_goodput(packetList, hostIP),
-    # 16average_reply_delay(packetList, hostIP),
-    # 17hops_av(packetList)
-    # ]
-
-
-
-
-
-
-
-
-
+        print(temp_2)
 
 
 
