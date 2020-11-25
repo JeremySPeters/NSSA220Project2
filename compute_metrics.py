@@ -12,17 +12,17 @@ def run(packetList, hostIP):
 	:param packetList: list of ping data
 	:param hostIP: ip of the host pc 
 	1 - number of icmp Request Sent,
-	2 - number of bytes Sent in the icmp Request Frame,
-	3 - number of bytes Sent in the icmp Request ICMP feild,
+	2 - number of bytes Sent in the icmp Request Frame, 			#ADD to 2
+	3 - number of bytes Sent in the icmp Request ICMP feild, 		#ADD to 6
 	4 - number of icmp Reply Sent,
-	5 - number of bytes Sent in the icmp Reply Frame,
-	6 - number of bytes Sent in the icmp Reply ICMP feild,
+	5 - number of bytes Sent in the icmp Reply Frame, 				#ADD to 5
+	6 - number of bytes Sent in the icmp Reply ICMP feild, 			#ADD to 3
 	7 - number of icmp Request Recieved,
-	8 - number of bytes Recieved in the icmp Request Frame,
-	9 - number of bytes Recieved in the icmp Request ICMP feild,
+	8 - number of bytes Recieved in the icmp Request Frame,			#ADD to 11
+	9 - number of bytes Recieved in the icmp Request ICMP feild,	#ADD to 12
 	10 - number of icmp Reply Recieved,
-	11 - number of bytes Recieved in the icmp Reply Frame,
-	12 - number of bytes Recieved in the icmp Reply ICMP feild
+	11 - number of bytes Recieved in the icmp Reply Frame,			#ADD to 8
+	12 - number of bytes Recieved in the icmp Reply ICMP feild		#ADD to 9
 	13 - Round trip time
 	14 - Echo request throughput
 	15 - Echo request goodput
