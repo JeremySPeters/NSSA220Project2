@@ -33,31 +33,35 @@ def compute(packetList, hostIP):
 	numReplySent = 0 #4
 	numReplyBytesSentFrame = 0 #5 
 	numReplyBytesSentICMP = 0 #6
-	try:
-		for packet in packetList:
-			if packet[7] == 'unreachable':
-				pass
-			elif packet[8] == 'request' and packet[2] == hostIP:
-				numRequestSent += 1
-				numRequestBytesSentFrame += int(packet[5])
-				numRequestBytesSentICMP += int((packet[5]-24))
+#	try:
+	for packet in packetList:
+		if packet[7] == 'unreachable':
+			pass
+		elif packet[8] == 'request' and packet[2] == hostIP:
+			numRequestSent += 1
+			numRequestBytesSentFrame += int(packet[5])
+			pac_panic: int = int(packet[5])
+			numRequestBytesSentICMP += pac_panic-24
 
-			elif packet[8] == 'request' and packet[2] != hostIP:
-				numRequestRec += 1
-				numRequestBytesRecFrame += int(packet[5])
-				numRequestBytesRecICMP += int((packet[5]-24))
+		elif packet[8] == 'request' and packet[2] != hostIP:
+			numRequestRec += 1
+			numRequestBytesRecFrame += int(packet[5])
+			pac_panic: int = int(packet[5])
+			numRequestBytesRecICMP += pac_panic-24
 
-			if packet[8] == 'reply' and packet[2] == hostIP:
-				numReplyRec += 1
-				numReplyBytesRecFrame += int(packet[5])
-				numReplyBytesRecICMP += int((packet[5]-24))
+		if packet[8] == 'reply' and packet[2] == hostIP:
+			numReplyRec += 1
+			numReplyBytesRecFrame += int(packet[5])
+			pac_panic: int = int(packet[5])
+			numReplyBytesRecICMP += pac_panic-24
 
-			elif packet[8] == 'reply' and packet[2] != hostIP:
-				numReplySent += 1
-				numReplyBytesSentFrame += int(packet[5])
-				numReplyBytesSentICMP += int((packet[5]-24))
-	except:
-		print("fatal error in compute")
+		elif packet[8] == 'reply' and packet[2] != hostIP:
+			numReplySent += 1
+			numReplyBytesSentFrame += int(packet[5])
+			pac_panic: int = int(packet[5])
+			numReplyBytesSentICMP += pac_panic-24
+#	except:
+#		print("fatal error in compute")
 	return [str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP)]
 
 def average_round_trip_time(packetList, hostIP):
@@ -75,25 +79,26 @@ def average_round_trip_time(packetList, hostIP):
 	while temp_0 <= len(packetList):
 		if packetList[temp_0][9] == "unreachable)":
 			pass
-		elif(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
-			string_temp_0: str = packetList[temp_0][9]
-			array_temp_0 = string_temp_0.split("=")
-			string_temp_1: str = array_temp_0[2]
-			string_temp_1.replace("ttl", "")
+		elif(packetList[temp_0][2] == hostIP):
+			if(packetList[temp_0][8] == "request"):
+				string_temp_0: str = packetList[temp_0][9]
+				array_temp_0 = string_temp_0.split("=")
+				string_temp_1: str = array_temp_0[2]
+				string_temp_1.replace("ttl", "")
 
-			string_temp_2: str = packetList[temp_1][9]
-			array_temp_1 = string_temp_2.split("=")
-			string_temp_3: str = str(array_temp_1[2])
-			string_temp_3.replace("ttl", "")
+				string_temp_2: str = packetList[temp_1][9]
+				array_temp_1 = string_temp_2.split("=")
+				string_temp_3: str = str(array_temp_1[2])
+				string_temp_3.replace("ttl", "")
 
-			while temp_1 <= len(packetList):
-				if(temp_0 != temp_1):
-					if(packetList[temp_0][9] == string_temp_3):
-						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
-			temp_1 += 1
-		temp_0 += 1
-		temp_1 = 0
-	RTT = sum(average_array) / len(average_array)
+				while temp_1 <= len(packetList):
+					if(temp_0 != temp_1):
+						if(packetList[temp_0][9] == string_temp_3):
+							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
+				temp_1 += 1
+			temp_0 += 1
+			temp_1 = 0
+			RTT = sum(average_array) / len(average_array)
 	return RTT
 
 def echo_request_throughput(packetList, hostIP):
@@ -109,14 +114,13 @@ def echo_request_throughput(packetList, hostIP):
 	ERT = 0
 
 	while temp_0 <= len(packetList):
-		if packetList[7] == "unreachable":
+		if(packetList[7] == "unreachable"):
 				pass
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
 			string_temp_0: str = packetList[temp_0][9]
 			array_temp_0 = string_temp_0.split("=")
 			string_temp_1: str = array_temp_0[2]
 			string_temp_1.replace("ttl", "")
-			
 			string_temp_2: str = packetList[temp_1][9]
 			array_temp_1 = string_temp_2.split("=")
 			string_temp_3: str = array_temp_1[2]
