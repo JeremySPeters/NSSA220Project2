@@ -7,6 +7,7 @@
 from typing import Text
 
 def run(packetList, hostIP):
+	
 	return [compute(packetList, hostIP), average_round_trip_time(packetList, hostIP), echo_request_throughput(packetList, hostIP), echo_request_goodput(packetList, hostIP), average_reply_delay(packetList, hostIP), hops_av(packetList)]
 
 
@@ -68,12 +69,12 @@ def average_round_trip_time(packetList, hostIP):
 	calculates average ping round trip time in milliseconds
 	:param packetList: list of ping data
 	:param hostIP: ip of the host pc 
-	:return: RTT (round trip time)
+	:return: rtt (round trip time)
 	"""
 	temp_0 = 0
 	temp_1 = 0
 	average_array = []
-	RTT = 0
+	rtt = 0
 
 	for temp_0 in packetList:
 		if(temp_0[7] != 'unreachable'):
@@ -93,18 +94,18 @@ def average_round_trip_time(packetList, hostIP):
 								if(final_string1 == final_string):
 									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
-	RTT = sum(average_array) / len(average_array)
-	return RTT
+	rtt = sum(average_array) / len(average_array)
+	return rtt
 
 def echo_request_throughput(packetList, hostIP):
 	"""
 	calculates echo request throughput in kB/sec
 	:param packetList: list of ping data
 	:param hostIP: ip of the host pc 
-	:return: ERT (echo request throughput) 
+	:return: ert (echo request throughput) 
 	"""
 	average_array = []
-	ERT = 0
+	ert = 0
 	for temp_0 in packetList:
 		if(temp_0[7] != 'unreachable'):
 			string_temp_2: str = temp_0[9]
@@ -125,18 +126,18 @@ def echo_request_throughput(packetList, hostIP):
 
 	compute_ar = compute(packetList, hostIP)
 	temp_int = compute_ar[1]
-	ERT = float(temp_int)  / sum(average_array)
-	return ERT
+	ert = float(temp_int)  / sum(average_array)
+	return ert
 
 def echo_request_goodput(packetList, hostIP):
 	"""
 	calculates echo request goodput in kB/sec
 	:param packetList: list of ping data
 	:param hostIP: ip of the host pc 
-	:return: ERT (echo request throughput) 
+	:return: erg (echo request throughput) 
 	"""
 	average_array = []
-	ERG = 0
+	erg = 0
 	for temp_0 in packetList:
 		if(temp_0[7] != 'unreachable'):
 			string_temp_2: str = temp_0[9]
@@ -156,18 +157,18 @@ def echo_request_goodput(packetList, hostIP):
 									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
 	compute_ar = compute(packetList, hostIP)
-	ERG = float(compute_ar[3]) / sum(average_array)
-	return ERG
+	erg = float(compute_ar[3]) / sum(average_array)
+	return erg
 
 def average_reply_delay(packetList, hostIP):
 	"""
 	calculates average reply delay time in milliseconds
 	:param packetList: list of ping data
 	:param hostIP: ip of the host pc 
-	:return: ARD (average reply delay)
+	:return: ard (average reply delay)
 	"""
 	average_array = []
-	ARD = 0
+	ard = 0
 
 	for temp_0 in packetList:
 		if(temp_0[7] != 'unreachable'):
@@ -187,8 +188,8 @@ def average_reply_delay(packetList, hostIP):
 								if(final_string1 == final_string):
 									average_array.append(float(temp_1[1]) - float(temp_0[1]))
 
-	ARD = sum(average_array) / len(average_array)
-	return ARD
+	ard = sum(average_array) / len(average_array)
+	return ard
 
 def hops_av(packetList):
 	"""
