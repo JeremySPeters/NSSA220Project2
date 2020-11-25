@@ -33,30 +33,31 @@ def compute(packetList, hostIP):
 	numReplySent = 0 #4
 	numReplyBytesSentFrame = 0 #5 
 	numReplyBytesSentICMP = 0 #6
+	try:
+		for packet in packetList:
+			if packet[7] == 'unreachable':
+				pass
+			elif packet[8] == 'request' and packet[2] == hostIP:
+				numRequestSent += 1
+				numRequestBytesSentFrame += int(packet[5])
+				numRequestBytesSentICMP += int((packet[5]-24))
 
-	for packet in packetList:
-		if packet[7] == 'unreachable':
-			pass
-		elif packet[8] == 'request' and packet[2] == hostIP:
-			numRequestSent += 1
-			numRequestBytesSentFrame += packet[5]
-			numRequestBytesSentICMP += (packet[5]-24)
+			elif packet[8] == 'request' and packet[2] != hostIP:
+				numRequestRec += 1
+				numRequestBytesRecFrame += int(packet[5])
+				numRequestBytesRecICMP += int((packet[5]-24))
 
-		elif packet[8] == 'request' and packet[2] != hostIP:
-			numRequestRec += 1
-			numRequestBytesRecFrame += packet[5]
-			numRequestBytesRecICMP += (packet[5]-24)
+			if packet[8] == 'reply' and packet[2] == hostIP:
+				numReplyRec += 1
+				numReplyBytesRecFrame += int(packet[5])
+				numReplyBytesRecICMP += int((packet[5]-24))
 
-		if packet[8] == 'reply' and packet[2] == hostIP:
-			numReplyRec += 1
-			numReplyBytesRecFrame += packet[5]
-			numReplyBytesRecICMP += (packet[5]-24)
-
-		elif packet[8] == 'reply' and packet[2] != hostIP:
-			numReplySent += 1
-			numReplyBytesSentFrame += packet[5]
-			numReplyBytesSentICMP += (packet[5]-24)
-
+			elif packet[8] == 'reply' and packet[2] != hostIP:
+				numReplySent += 1
+				numReplyBytesSentFrame += int(packet[5])
+				numReplyBytesSentICMP += int((packet[5]-24))
+	except:
+		print("fatal error in compute")
 	return [str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP)]
 
 def average_round_trip_time(packetList, hostIP):
