@@ -4,7 +4,9 @@
 	Randall Weber (rjw9659)
 	Julian Mato-Hernandez (jmm5458)
 """
-
+import sys
+import threading
+from typing import Text
 
 
 def compute(packetList):
@@ -125,7 +127,7 @@ def echo_request_goodput(packetList):
 
 def average_reply_delay(packetList):
 	"""
-	calculates average reply delay time in milliseconds
+	calculates average reply delay time in millisecondsx
 	:param packetList: list of ping data
 	:return: ARD (average reply delay)
 	"""
@@ -137,7 +139,7 @@ def average_reply_delay(packetList):
 	hostIP = '192.168.100.1'
 	while temp_0 <= len(packetList):
 		if(packetList[temp_0][2] != hostIP and packetList[temp_0][8] == "request"):
-			while temp_1 <= len(packetList):
+			while temp_1 <= len(packetList[temp_0]): # just a hunch but posible issue fix
 				if(temp_0 != temp_1):
 					if(packetList[temp_0][9] == packetList[temp_1][9]): #debug.txt is incorrectly formated for comparison requires more devisions to correctly compare!!!!!!
 						average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
@@ -147,3 +149,35 @@ def average_reply_delay(packetList):
 	ARD = sum(average_array) / len(average_array)
 	return ARD
 
+def total_hops(packetList):
+	"""
+	docstring
+	"""
+	temp_0 = 0
+	temp_1 = 0
+	one_hop_this_time = 0
+	three_hop_this_time = 0
+	while temp_0 <= len(packetList):
+		while temp_1 <= len(packetList[temp_0]):
+			string_temp_0: str = packetList[temp_0][9]
+			array_temp_0 = string_temp_0.split("=")
+			string_temp_1: int = array_temp_0[3]
+			temp_if_hop = 129 - string_temp_1
+			
+			if(temp_if_hop == 1):
+				one_hop_this_time += 1
+			elif(temp_if_hop == 3):
+				three_hop_this_time += 1
+			else:
+				break
+			temp_1 += 1
+		temp_0 += 1
+	return
+
+
+
+
+#string_temp_0: str = packetList[temp_0][9]
+#			array_temp_0 = string_temp_0.split("=")
+#			string_temp_1: str = array_temp_0[2]
+#			string_temp_1.replace("ttl", "")
