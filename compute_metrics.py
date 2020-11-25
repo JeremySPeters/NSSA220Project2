@@ -96,9 +96,9 @@ def average_round_trip_time(packetList, hostIP):
 						if(packetList[temp_0][9] == string_temp_3):
 							average_array.apend(packetList[temp_1][1]-packetList[temp_0][1])
 				temp_1 += 1
-			temp_0 += 1
 			temp_1 = 0
 			RTT = sum(average_array) / len(average_array)
+		temp_0 += 1
 	return RTT
 
 def echo_request_throughput(packetList, hostIP):
