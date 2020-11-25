@@ -48,6 +48,38 @@ def main():
                 temp_2.append(temp_3)
         reformattedResults.append(temp_2)
 
+    #[
+    # 1str(numRequestSent),
+    # 2str(numRequestBytesSentFrame),
+    # 3str(numRequestBytesSentICMP),
+    # 4str(numReplySent),
+    # 5str(numReplyBytesSentFrame),
+    # 6str(numReplyBytesSentICMP),
+    # 7str(numRequestRec),
+    # 8str(numRequestBytesRecFrame),
+    # 9str(numRequestBytesRecICMP),
+    # 10str(numReplyRec),
+    # 11str(numReplyBytesRecFrame),
+    # 12str(numReplyBytesRecICMP)]
+
+    # 13average_round_trip_time(packetList, hostIP),
+    # 14echo_request_throughput(packetList, hostIP),
+    # 15echo_request_goodput(packetList, hostIP),
+    # 16average_reply_delay(packetList, hostIP),
+    # 17hops_av(packetList)]
+
+
+
+
+
+
+
+
+
+
+
+
+
     # Reference for CSV Write
     #  [0][str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP),
     #  [3]str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec),
