@@ -89,8 +89,8 @@ def recursive_remove(bus):
 	return bus
 
 def main():
-	traffic = filter('Captures/Node1.txt', 'ICMP', 'debug.txt')
-	#traffic = filter(str(sys.argv[(len(sys.argv) - 1)]), 'ICMP', 'debug.txt')
+	#traffic = filter('Captures/Node1.txt', 'ICMP', 'debug.txt')
+	traffic = filter(str(sys.argv[(len(sys.argv) - 1)]), 'ICMP', 'debug.txt')
 	for bus in traffic:
 		sep = 0
 		print(bus[1])

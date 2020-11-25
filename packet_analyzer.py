@@ -11,7 +11,7 @@ from compute_metrics import *
 
 
 def main():
-    node = str(sys.argv[(len(sys.argv) - 1)])
+    nodes = ["Node1.txt" , "Node2.txt", "Node3.txt", "Node4.txt", "Node5.txt"]
     filter()
     parse()
     compute()
