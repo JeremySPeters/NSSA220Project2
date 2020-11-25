@@ -175,4 +175,4 @@ def hops_av(packetList):
 		temp_0 += 1
 	total_hops = one_hop_this_time + three_hop_this_time
 	avg_hops = float(three_hop_this_time/total_hops)
-	return
+	return avg_hops
