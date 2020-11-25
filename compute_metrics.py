@@ -37,7 +37,7 @@ def compute(packetList):
 	numReplyBytesRecICMP = 0 #12
 
 	numReplySent = 0 #4
-	numReplyBytesSentFrame = 0 #5
+	numReplyBytesSentFrame = 0 #5 
 	numReplyBytesSentICMP = 0 #6
 	hostIP = '192.168.100.1'
 
