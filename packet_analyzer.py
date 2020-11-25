@@ -37,25 +37,36 @@ def main():
     for i in range(len(headerNodes)):
         computedNodes.append(run(headerNodes[i], ipNodes[i]))
 
+    # Reference for CSV Write
+    #  [0][str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP),
+    #  [3]str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec),
+    #  [7]str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame),
+    #  [11]str(numReplyBytesRecICMP)]
+    metricResults = []
     with open('MiniProject2Output.csv', 'w', newline='') as file:
         # for each node
         writer = csv.writer(file)
         # writer.writerow(["Node"]) Write node name
         writer.writerow([""])
+        # Emtpy Line
+
         writer.writerow(["Echo Requests Sent", "Echo Requests Received", "Echo Replies Sent", "Echo Replies Received"])
-        # Metrics go here
+        writer.writerow([[0], [6], [3], [9]])
         writer.writerow(["Echo Requests Bytes Sent (bytes)", "Echo Requests Data Sent (bytes)"])
-        # Metrics go here
+        writer.writerow([[1], [2]])
         writer.writerow(["Echo Requests Bytes Received (bytes)", "Echo Requests Data Received (bytes)"])
-        # Metrics go here
+        writer.writerow([[7], [8]])
         writer.writerow([""])
+        # Emtpy Line
+
         # Last block of metrics commented for now
         # writer.writerow(["Average RTT",  num])
         # writer.writerow(["Echo Request Throughput (kB/sec)",  num])
         # writer.writerow(["Echo Request Goodput (kB/sec)",  num])
         # writer.writerow(["Average Reply Delay (microseconds)",  num])
         # writer.writerow(["Average Echo Request Hop Count",  num])
-        writer.writerow([""])
+        # writer.writerow([""])
+        # Emtpy Line
 
 
 if __name__ == '__main__':
