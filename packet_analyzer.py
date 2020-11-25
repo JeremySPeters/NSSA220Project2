@@ -66,7 +66,8 @@ def main():
     # 14echo_request_throughput(packetList, hostIP),
     # 15echo_request_goodput(packetList, hostIP),
     # 16average_reply_delay(packetList, hostIP),
-    # 17hops_av(packetList)]
+    # 17hops_av(packetList)
+    # ]
 
 
 

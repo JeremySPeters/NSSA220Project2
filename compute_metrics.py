@@ -11,12 +11,20 @@ def run(packetList, hostIP):
 	calls all 
 	:param packetList: list of ping data
 	:param hostIP: ip of the host pc 
-	1 - number of icmp Request Sent, number of bytes Sent in the icmp Request Frame, number of bytes Sent in the icmp Request ICMP feild, number of icmp Reply Sent, number of bytes Sent in the icmp Reply Frame, number of bytes Sent in the icmp Reply ICMP feild, number of icmp Request Recieved, number of bytes Recieved in the icmp Request Frame, number of bytes Recieved in the icmp Request ICMP feild, number of icmp Reply Recieved, number of bytes Recieved in the icmp Reply Frame, number of bytes Recieved in the icmp Reply ICMP feild
-	2 - Round trip time
-	3 - Echo request throughput
-	4 - Echo request goodput
-	5 - average reply delay
-	6 - hop average
+	1 - number of icmp Request Sent, number of bytes Sent in the icmp Request Frame,
+	2 - number of bytes Sent in the icmp Request ICMP feild, number of icmp Reply Sent,
+	3 - number of bytes Sent in the icmp Reply Frame,
+	4 - number of bytes Sent in the icmp Reply ICMP feild, number of icmp Request Recieved,
+	5 - number of bytes Recieved in the icmp Request Frame,
+	6 - number of bytes Recieved in the icmp Request ICMP feild,
+	7 - number of icmp Reply Recieved,
+	8 - number of bytes Recieved in the icmp Reply Frame,
+	9 - number of bytes Recieved in the icmp Reply ICMP feild
+	10 - Round trip time
+	11 - Echo request throughput
+	12 - Echo request goodput
+	13 - average reply delay
+	14 - hop average
 	"""
 	
 	return [compute(packetList, hostIP), average_round_trip_time(packetList, hostIP), echo_request_throughput(packetList, hostIP), echo_request_goodput(packetList, hostIP), average_reply_delay(packetList, hostIP), hops_av(packetList)]
