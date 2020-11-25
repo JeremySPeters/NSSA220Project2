@@ -1,9 +1,3 @@
-
-from filter_packets import *
-from packet_parser import *
-from compute_metrics import *
-import csv
-
 """
 @Authors:
 	Jeremy Peters (jsp7075)
@@ -14,6 +8,7 @@ import csv
 from filter_packets import *
 from packet_parser import *
 from compute_metrics import *
+import csv
 
 def main():
     inputNodes = ["Node1.txt",
@@ -29,10 +24,15 @@ def main():
                    "Node5_filtered.txt"]
     headerNodes = []
 
+    computedNodes = []
+
     for i in range(len(inputNodes)):
         filter(inputNodes[i], 'ICMP', outputNodes[i])
-        headerNodes.append(parse(outputNodes[i]))
-    compute()
+    for temp in outputNodes:
+        headerNodes.append(parse(temp))
+    for temp in headerNodes:
+        computedNodes.append(run(temp))
+
     with open('MiniProject2Output.csv', 'w', newline='') as file:
         # for each node
         writer = csv.writer(file)
