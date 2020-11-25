@@ -48,6 +48,25 @@ def main():
                 temp_2.append(temp_3)
         reformattedResults.append(temp_2)
 
+    adjustedResults = []
+    for temp_1 in reformattedResults:
+        temp_2 = []
+        temp_2.append(temp_1[0])                                #ICMP requests sent     @index 0
+        temp_2.append(str(float(temp_1[1]) + float(temp_1[4]))) #ICMP Frame bytes sent  @index 1
+        temp_2.append(str(float(temp_1[2]) + float(temp_1[5]))) #ICMP Request field bytes sent@index 2
+        temp_2.append(temp_1[3])                                #ICMP replies sent      @index 3
+        temp_2.append(temp_1[6])                                #ICMP requests recieved @index 4
+        temp_2.append(str(float(temp_1[7]) + float(temp_1[10])))#                       @index 5
+        temp_2.append(str(float(temp_1[8]) + float(temp_1[11])))#                       @index 6
+        temp_2.append(temp_1[9])                                #                       @index 7
+        temp_2.append(temp_1[12])                               #                       @index 8
+        temp_2.append(temp_1[13])                               #                       @index 9
+        temp_2.append(temp_1[14])                               #                       @index 10
+        temp_2.append(temp_1[15])                               #                       @index 11
+        temp_2.append(temp_1[16])                               #                       @index 12
+        adjustedResults.append(temp_2)
+        print(len(temp_2))
+
     #[
     # 1str(numRequestSent),
     # 2str(numRequestBytesSentFrame),
