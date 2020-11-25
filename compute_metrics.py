@@ -149,7 +149,7 @@ def average_reply_delay(packetList):
 	ARD = sum(average_array) / len(average_array)
 	return ARD
 
-def total_hops(packetList):
+def hops_av(packetList):
 	"""
 	docstring
 	"""
@@ -173,11 +173,3 @@ def total_hops(packetList):
 			temp_1 += 1
 		temp_0 += 1
 	return
-
-
-
-
-#string_temp_0: str = packetList[temp_0][9]
-#			array_temp_0 = string_temp_0.split("=")
-#			string_temp_1: str = array_temp_0[2]
-#			string_temp_1.replace("ttl", "")
