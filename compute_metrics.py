@@ -60,7 +60,7 @@ def compute(packetList):
 			numReplyBytesSentFrame += packet[5]
 			numReplyBytesSentICMP += (packet[5]-24)
 
-	return str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP), str(), str(), str(), str(), str(), str(), str(), str(), str()
+	return [str(numRequestSent), str(numRequestBytesSentFrame), str(numRequestBytesSentICMP), str(numReplySent), str(numReplyBytesSentFrame), str(numReplyBytesSentICMP), str(numRequestRec), str(numRequestBytesRecFrame), str(numRequestBytesRecICMP), str(numReplyRec), str(numReplyBytesRecFrame), str(numReplyBytesRecICMP)]
 
 def average_round_trip_time(packetList):
 	"""
