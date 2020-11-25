@@ -4,8 +4,6 @@
 	Randall Weber (rjw9659)
 	Julian Mato-Hernandez (jmm5458)
 """
-import sys
-import threading
 from typing import Text
 
 def run(packetList, hostIP):
