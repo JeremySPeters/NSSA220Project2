@@ -73,7 +73,7 @@ def average_round_trip_time(packetList, hostIP):
 	RTT = 0
 
 	while temp_0 <= len(packetList):
-		if temp_0[7] == "unreachable":
+		if temp_0[6] == "unreachable":
 				pass
 		elif(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
 			string_temp_0: str = packetList[temp_0][9]
@@ -109,6 +109,8 @@ def echo_request_throughput(packetList, hostIP):
 	ERT = 0
 
 	while temp_0 <= len(packetList):
+		if temp_0[7] == "unreachable":
+				pass
 		if(packetList[temp_0][2] == hostIP and packetList[temp_0][8] == "request"):
 			string_temp_0: str = packetList[temp_0][9]
 			array_temp_0 = string_temp_0.split("=")
