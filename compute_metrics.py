@@ -167,9 +167,12 @@ def hops_av(packetList):
 			if(temp_if_hop == 1):
 				one_hop_this_time += 1
 			elif(temp_if_hop == 3):
+				one_hop_this_time += 1
 				three_hop_this_time += 1
 			else:
 				break
 			temp_1 += 1
 		temp_0 += 1
+	total_hops = one_hop_this_time + three_hop_this_time
+	avg_hops = float(three_hop_this_time/total_hops)
 	return

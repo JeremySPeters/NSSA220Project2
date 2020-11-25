@@ -11,6 +11,7 @@ from compute_metrics import *
 
 
 def main():
+    node = str(sys.argv[(len(sys.argv) - 1)])
     filter()
     parse()
     compute()
